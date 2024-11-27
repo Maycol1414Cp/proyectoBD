@@ -4,16 +4,15 @@
 erDiagram
     %% ENTIDADES PRINCIPALES
     SANCION {
-        int idSancion PK
+        int idSancion
         int cantidad
         string estado
-        int idDeportista FK
-        int idJuez FK
-        int idArbitro FK
+        int idDeportista
+        int idJuez
+        int idArbitro
     }
-
     PERSONA {
-        int idPersona PK
+        int idPersona
         string nombre
         string apellidos
         string email
@@ -24,137 +23,311 @@ erDiagram
         string telefono
         string idioma
         string contrasena
-        int idCeremonia FK
-        int idPais FK
+        int idCeremonia
+        int idPais
     }
-
     PAIS {
-        int idPais PK
+        int idPais
         string continente
         string himno
     }
-
     CEREMONIA {
-        int idCeremonia PK
+        int idCeremonia
         string ubicacion
         string tipoCeremonia
         date apertura
         date clausura
     }
-
     ARBITRO {
-        int idArbitro PK
+        int idArbitro
         string especialidadA
         string idioma
     }
-
     TUTOR {
-        int idTutor PK
+        int idTutor
         string estadoCivil
         string ocupacion
         string tipo
         string rutas
         string rut
     }
-
     LESION {
-        int idLesion PK
+        int idLesion
         string tipoLesion
         string severidad
         date fechaLesion
-        int idPersona FK
+        int idPersona
     }
-
     MEDICO {
-        int idMedico PK
+        int idMedico
         string especialidadM
     }
-
     ARTISTA {
-        int idArtista PK
+        int idArtista
         string generoMus
         string nombreArtistico
-        int idGrupoM FK
+        int idGrupoM
     }
-
     GRUPO_MUSICAL {
-        int idGrupoM PK
+        int idGrupoM
         string trayectoria
     }
-
     ESPECTADOR {
-        int idEspectador PK
+        int idEspectador
         string tipo
         string metodoPago
     }
-
     BOLETO {
-        int idBoleto PK
+        int idBoleto
         float precio
-        int idEspectador FK
+        int idEspectador
     }
-
-    DEPORTISTA {
-        int idDeportista PK
-        string sistemaSalud
-        string nacionalidad
-        string biografia
-        string sexo
-        string Facebook
-        string Instagram
-        string Twitter
-        string seguroMedico
-        string ocupacion
-        int idCeremonia FK
-        int idTutor FK
-        int idMedico FK
-        int idEquipo FK
+    D_MARATON {
+        int idMaraton
+        string tiempoLlegada
+        string tiempoPartida
+        string recordMundial
     }
-
+    EQUIPO {
+        int idEquipo
+        date fecha
+        string hora
+        int idFutbol
+    }
+    FIXTURE_F {
+        int idFixture_F
+        date fecha
+        string hora
+        int idFutbol
+    }
+    D_FUTBOL {
+        int idFutbol
+        string lugar
+    }
     GRUPO {
-        int idGrupo PK
+        int idGrupo
         string nombreG
-        int idBaloncesto FK
-        int idPais FK
+        int idBaloncesto
+        int idPais
     }
-
+    FIXTURE_B {
+        int idFixture_B
+        int puntos_GA
+        int puntos_GB
+        int idBaloncesto
+    }
+    D_BALONCESTO {
+        int idBaloncesto
+        int punto
+        string penal
+    }
+    D_BOXEO {
+        int idBoxeo
+        string caracteristica
+    }
+    FIXTURE_BX {
+        int idFixture_BX
+        int puntosBx
+        string descripcion
+        int idBoxeo
+        int idArbitro
+    }
+    PARTICIPA_CERMONIA {
+        int idCeremonia
+        int idGrupoM
+    }
+    DISCIPLINA {
+        int idDisciplina
+        date fechaIni
+        string edicion
+        string horario
+        string nombre_disciplina
+    }
+    TIENE {
+        int idDisciplina
+        int idBoleto
+        int idSede
+    }
     SEDE {
-        int idSede PK
+        int idSede
         int capacidad
         string estado
         string nombreSede
         string ubicacion
         int distanciaVilla
     }
-
-    DISCIPLINA {
-        int idDisciplina PK
+    ORGANIZA {
+        int idDisciplina
+        int idSede
         date fechaIni
-        string edicion
-        string horario
-        string nombreDisciplina
+        date fechaFin
     }
-
-    FIXTURE_F {
-        int idFixture_F PK
-        date fecha
-        string hora
-        int idFutbol FK
+    PATROCINA {
+        int idPatrocinador
+        int idSede
     }
-
+    PATROCINADOR {
+        int idPatrocinador
+        string actividad
+    }
+    LLEGA {
+        int idSede
+        int idTransporte
+        string hora_llegada
+    }
     TRANSPORTE {
-        int idTransporte PK
+        int idTransporte
         string placa
         string modelo
         string rutas
         string tipo
     }
-
+    TRANSPORTA {
+        int idTransporte
+        int idPersona
+        string horaPartida
+    }
+    ES_PARTE {
+        int idDisciplina
+        int idPersonal
+    }
+    PERSONAL {
+        int idPersonal
+        string nombreP
+        string rol
+    }
+    ASOCIADO {
+        int idDisciplina
+        int idEntrenador
+    }
+    ENTRENADOR {
+        int idEntrenador
+        string especialidad
+        string rol
+        string paisOrigen
+    }
+    PARTICIPA {
+        int idDisciplina
+        int idDeportista
+    }
+    PERTENECE {
+        int idPatrocinador
+        int idContrato
+    }
     CONTRATO {
-        int idContrato PK
+        int idContrato
         date fecha
         string detalle
     }
+    COMPITEAT {
+        int idDAtletismo
+        int idDeportista
+        string horaInicio
+        string horaFin
+    }
+    POSEE {
+        int idSede
+        int idCentroSalud
+    }
+    CENTRO_SALUD {
+        int idCentroSalud
+        string ubicacion
+    }
+    AT_INGRESA {
+        int idPersona
+        int idCentroSalud
+        string causa
+        date fecha
+    }
+    COMPITEX {
+        int idFixture_F
+        int idEquipo
+    }
+    COMPITEY {
+        int idFixture_F
+        int idEquipo
+    }
+    REALIZA_GOL {
+        int idFixture_F
+        int idEquipo
+        int idDeportista
+        int minGol
+        string penal
+    }
+    ASIGNADO_B {
+        int idFixture_B
+        int idArbitro
+    }
+    ASIGNADO_FUT {
+        int idFixture_F
+        int idArbitro
+    }
+    JUEZ {
+        int idJuez
+        string experiencia
+        int idMaraton
+    }
+    D_ATLETISMO {
+        int idDAtletismo
+        string tiempoLlegada
+        string recordMundial
+        string tiempoPartida
+        string subDisciplina
+    }
+    REGISTRO {
+        int idDAtletismo
+        int idPuntoControl
+        string horarioPaso
+    }
+    PUNTO_CONTROL {
+        int idPuntoControl
+        string inicio
+        string final
+    }
+    ATLETAX {
+        int idFixture_Bx
+        int idDeportista
+    }
+    ATLETAY {
+        int idFixture_Bx
+        int idDeportista
+    }
+    DEPORTISTA {
+        int idDeportista
+        string sistemaSalud
+        string nacionalidad
+        string biografia
+        string sexo
+        string Facebook
+        string Instagram
+        string twiter
+        string seguroMedico
+        string ocupacion
+        int idCeremonia
+        int idTutor
+        int idMedico
+        int idEquipo
+    }
+
+    %% RELACIONES ENTRE ENTIDADES
+    PERSONA ||--o{ PAIS : "pertenece"
+    PERSONA ||--o| CEREMONIA : "participa"
+    LESION ||--o| PERSONA : "afecta"
+    ARTISTA ||--o| GRUPO_MUSICAL : "pertenece"
+    BOLETO ||--o| ESPECTADOR : "adquiere"
+    DEPORTISTA ||--o| CEREMONIA : "asiste"
+    DEPORTISTA ||--o| TUTOR : "tutor"
+    DEPORTISTA ||--o| MEDICO : "atendido por"
+    DEPORTISTA ||--o| SEDE : "compite"
+    FIXTURE_F ||--o| SEDE : "se juega en"
+    TRANSPORTE ||--o| PERSONA : "transporta"
+    SANCION ||--o| JUEZ : "aplica"
+    SANCION ||--o| ARBITRO : "evalua"
+    DISCIPLINA ||--o| SEDE : "tiene"
+    CONTRATO ||--o| DEPORTISTA : "contrata"
+    GRUPO ||--o| PAIS : "representa"
+    FIXTURE_F ||--o| DEPORTISTA : "participa"
+
 
     %% RELACIONES ENTRE ENTIDADES
     PERSONA ||--o{ PAIS : "pertenece"

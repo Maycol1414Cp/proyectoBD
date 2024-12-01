@@ -4,6 +4,7 @@ erDiagram
         int idDAtletismo PK,FK
         int idPuntoControl PK,FK
         string horarioPaso PK,FK
+        float horarioPaso
     }
     PUNTO_CONTROL {
         int idPuntoControl PK
@@ -32,4 +33,9 @@ erDiagram
         int idMedico FK
         int idEquipo FK
     }  
+
+    REGISTRO }|--|| DEPORTISTA :""
+    REGISTRO }|--|| D_MARATON :""
+    REGISTRO }|--|| PUNTO_CONTROL :""
+    
 ```

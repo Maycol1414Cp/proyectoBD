@@ -1,3 +1,4 @@
+```mermaid
 erDiagram
     %% ENTIDADES PRINCIPALES
     SANCION {
@@ -345,3 +346,4 @@ erDiagram
     GRUPO ||--o| PAIS : "representa"
     FIXTURE_F ||--o| DEPORTISTA : "participa"
 
+```
